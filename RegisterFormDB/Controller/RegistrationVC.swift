@@ -30,7 +30,9 @@ class RegistrationVC: BaseViewController{
     
     let datePicker = UIDatePicker()
     let educationPickerView = UIPickerView()
-
+    let dataBaseManager = DataBaseManager()
+    var userInfo = UsersInfo()
+    var imgSelected: Bool = false
     //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,7 +84,7 @@ class RegistrationVC: BaseViewController{
         let educationSelector = UITapGestureRecognizer(target: self, action: #selector(educationSelection(sender:)))
         viewEducation.isUserInteractionEnabled = true
         viewEducation.addGestureRecognizer(educationSelector)
-        tfEducation.text = tfEducation.text == "" ? "" : tfEducation.text
+        tfEducation.text = Educations.allCases[0].rawValue 
     }
     
     func alertOptions(){
@@ -119,24 +121,20 @@ class RegistrationVC: BaseViewController{
     }
     
     func saveUserData(){
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        let userData = UserData(context: context)
-        userData.firstName = tfFirstName.text ?? ""
-        userData.lastName = tfLastName.text ?? ""
-        userData.email = tfEmail.text ?? ""
-        userData.phoneNumber = tfPhoneNo.text ?? ""
-        userData.password = tfPassword.text ?? ""
-        userData.confirmPassword = tfConfirmPassword.text ?? ""
-        userData.education = tfEducation.text ?? ""
-        userData.dob = tfDOB.text ?? ""
-        userData.profilePic = profileImg.image?.pngData()
-        userData.gender = maleRadio.isSelected ? "M" : "F"
-        do{
-            try context.save()
+        userInfo.firstName = tfFirstName.text ?? ""
+        userInfo.lastName = tfLastName.text ?? ""
+        userInfo.email = tfEmail.text ?? ""
+        userInfo.phoneNumber = tfPhoneNo.text ?? ""
+        userInfo.password = tfPassword.text ?? ""
+        userInfo.confirmPassword = tfConfirmPassword.text ?? ""
+        userInfo.education = tfEducation.text ?? ""
+        userInfo.dob = tfDOB.text ?? ""
+        userInfo.profilePic = profileImg.image?.pngData() ?? Data()
+        userInfo.gender = maleRadio.isSelected ? "M" : "F"
+        if let saveResult = dataBaseManager.saveUserData(userData: userInfo){
+            showAlert(msg: saveResult)
+        } else {
             navigationController?.popViewController(animated: true)
-        } catch {
-            showAlert(msg: error.localizedDescription)
         }
     }
     
@@ -168,29 +166,15 @@ class RegistrationVC: BaseViewController{
     @IBAction func submitTapped(_ sender: UIButton) {
         if(!(maleRadio.isSelected || femaleRadio.isSelected)) {
             showAlert(msg: "Select Gender")
-        } else if profileImg.image == UIImage(systemName: "person.fill"){
+        } else if !imgSelected{
             showAlert(msg: "Select Image")
         } else {
-            
             let validation = Validations()
-            let validityResult = validation.registerValidation(firstName: tfFirstName.text, lastName: tfLastName.text, email: tfEmail.text, password: tfPassword.text, confirmPassword: tfConfirmPassword.text, mobileNumber: tfPhoneNo.text, education: tfEducation.text, dob: tfDOB.text)
-            
-            if validityResult == nil{
-                saveUserData()
+            if let validityResult = validation.registerValidation(firstName: tfFirstName.text, lastName: tfLastName.text, email: tfEmail.text, password: tfPassword.text, confirmPassword: tfConfirmPassword.text, mobileNumber: tfPhoneNo.text, education: tfEducation.text, dob: tfDOB.text){
+                showAlert(msg: validityResult)
             } else {
-                showAlert(msg: validityResult ?? "")
+                saveUserData()
             }
-            print(tfFirstName.text!)
-            print(tfLastName.text!)
-            print(tfPhoneNo.text!)
-            print(tfEmail.text!)
-            print(maleRadio.isSelected ? "male" : "female")
-            print(tfPassword.text!)
-            print(tfConfirmPassword.text!)
-            print(tfEducation.text!)
-            print(tfDOB.text!)
-            
-            showAlert(msg: "Registered Successfully")
         }
     }
 }
@@ -244,6 +228,7 @@ extension RegistrationVC: UIImagePickerControllerDelegate, UINavigationControlle
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let editingImg = info[.editedImage] as? UIImage{
             self.profileImg.image = editingImg
+            self.imgSelected = true
         }
         picker.dismiss(animated: true)
     }

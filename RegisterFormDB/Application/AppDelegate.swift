@@ -15,6 +15,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        if let storeURL = persistentContainer.persistentStoreCoordinator.persistentStores.first?.url {
+            print("Core Data SQLite database URL: \(storeURL)")
+        }
         return true
     }
 

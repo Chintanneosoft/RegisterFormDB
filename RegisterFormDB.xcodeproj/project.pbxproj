@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		928230FE2AD40D510054C690 /* DataBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928230FD2AD40D510054C690 /* DataBaseManager.swift */; };
 		928540C72AD017A200F4C53C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928540C62AD017A200F4C53C /* AppDelegate.swift */; };
 		928540C92AD017A200F4C53C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928540C82AD017A200F4C53C /* SceneDelegate.swift */; };
 		928540CB2AD017A200F4C53C /* UsersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928540CA2AD017A200F4C53C /* UsersVC.swift */; };
@@ -24,6 +25,7 @@
 		928AF9092AD16E8000E63001 /* Validations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928AF9082AD16E8000E63001 /* Validations.swift */; };
 		928AF90B2AD176A200E63001 /* Common Funtions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928AF90A2AD176A200E63001 /* Common Funtions.swift */; };
 		928AF90D2AD1795800E63001 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928AF90C2AD1795800E63001 /* BaseViewController.swift */; };
+		9291FC8F2AD517460084A16F /* UsersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9291FC8E2AD517460084A16F /* UsersModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		928230FD2AD40D510054C690 /* DataBaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseManager.swift; sourceTree = "<group>"; };
 		928540C32AD017A200F4C53C /* RegisterFormDB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RegisterFormDB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		928540C62AD017A200F4C53C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		928540C82AD017A200F4C53C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -65,6 +68,7 @@
 		928AF9082AD16E8000E63001 /* Validations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validations.swift; sourceTree = "<group>"; };
 		928AF90A2AD176A200E63001 /* Common Funtions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Common Funtions.swift"; sourceTree = "<group>"; };
 		928AF90C2AD1795800E63001 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		9291FC8E2AD517460084A16F /* UsersModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +105,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		928230FC2AD40D330054C690 /* DataBase Manager */ = {
+			isa = PBXGroup;
+			children = (
+				928230FD2AD40D510054C690 /* DataBaseManager.swift */,
+			);
+			path = "DataBase Manager";
+			sourceTree = "<group>";
+		};
 		928540BA2AD017A200F4C53C = {
 			isa = PBXGroup;
 			children = (
@@ -124,6 +136,7 @@
 		928540C52AD017A200F4C53C /* RegisterFormDB */ = {
 			isa = PBXGroup;
 			children = (
+				928230FC2AD40D330054C690 /* DataBase Manager */,
 				928230F92AD3C8130054C690 /* View */,
 				928540FB2AD018A300F4C53C /* Controller */,
 				928AF9042AD16BF500E63001 /* Model  */,
@@ -193,6 +206,7 @@
 			isa = PBXGroup;
 			children = (
 				928AF9052AD16C2900E63001 /* RegistrationModel.swift */,
+				9291FC8E2AD517460084A16F /* UsersModel.swift */,
 			);
 			path = "Model ";
 			sourceTree = "<group>";
@@ -341,6 +355,7 @@
 			files = (
 				928540CB2AD017A200F4C53C /* UsersVC.swift in Sources */,
 				928541022AD0252F00F4C53C /* RegistrationVC.swift in Sources */,
+				9291FC8F2AD517460084A16F /* UsersModel.swift in Sources */,
 				928AF9092AD16E8000E63001 /* Validations.swift in Sources */,
 				928540C72AD017A200F4C53C /* AppDelegate.swift in Sources */,
 				928540D12AD017A200F4C53C /* RegisterFormDB.xcdatamodeld in Sources */,
@@ -349,6 +364,7 @@
 				928540FF2AD01A2E00F4C53C /* UserCell.swift in Sources */,
 				928AF90B2AD176A200E63001 /* Common Funtions.swift in Sources */,
 				928540C92AD017A200F4C53C /* SceneDelegate.swift in Sources */,
+				928230FE2AD40D510054C690 /* DataBaseManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
