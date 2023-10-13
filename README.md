@@ -1,5 +1,7 @@
 
 # RegisterFormDB
 
-Core Data lavda Implementation conflict abhi aayega
+
+Core Data Implementation conflict nahi aaya
+
 
